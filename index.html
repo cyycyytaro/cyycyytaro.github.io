@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>美甲爆款工作台 ✨</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="美甲工作台">
+<meta name="theme-color" content="#E87AA0">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">
+      <img src="stickers/avatar/avatar-show-nails.png" class="logo-img logo-avatar" alt="美甲工作台">
+    </div>
+    <div>
+      <h1>美甲爆款工作台</h1>
+      <p class="sub">找爆款 → 拆教程 → 算材料 → 比价采购 ✿</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="persona-switch" id="personaSwitch">
+      <button class="pill active" data-persona="artist">💅 美甲师接单</button>
+      <button class="pill" data-persona="diy">🏠 在家自己做</button>
+      <button class="pill" data-persona="seller">📦 电商选品</button>
+      <button class="pill" data-persona="creator">🎬 博主创作</button>
+    </div>
+    <button class="ghost-btn" id="btnExport" title="导出全部数据为 JSON">导出</button>
+    <button class="ghost-btn" id="btnImport" title="导入 JSON">导入</button>
+    <button class="ghost-btn" id="btnSettings" title="设置">⚙️ 设置</button>
+    <input type="file" id="fileImport" accept="application/json" hidden>
+  </div>
+</header>
+
+<div class="persona-hint" id="personaHint"></div>
+
+<div class="layout">
+<nav class="tabs">
+  <button class="tab active" data-tab="library">
+    <img class="tab-icon" src="stickers/avatar/avatar-mirror.png" alt="">
+    爆款库 <span class="badge" id="cntLib">0</span>
+  </button>
+  <button class="tab" data-tab="portfolio">
+    <img class="tab-icon" src="stickers/avatar/avatar-doing-nails.png" alt="">
+    作品集 <span class="badge" id="cntPortfolio">0</span>
+  </button>
+  <button class="tab" data-tab="cart">
+    <img class="tab-icon" src="stickers/avatar/avatar-waving.png" alt="">
+    采购比价 <span class="badge" id="cntCart">0</span>
+  </button>
+  <button class="tab" data-tab="pricing">
+    <img class="tab-icon" src="stickers/avatar/avatar-picking-colors.png" alt="">
+    成本定价
+  </button>
+  <button class="tab" data-tab="baokuan">
+    <img class="tab-icon" src="stickers/avatar/avatar-showing-set.png" alt="">
+    爆款中心 <span class="badge" id="cntDaily">0</span>
+  </button>
+  <button class="tab" data-tab="blindbox">
+    <img class="tab-icon" src="stickers/avatar/avatar-blindbox.png" alt="">
+    美甲盲盒
+  </button>
+  <button class="tab" data-tab="material">
+    <img class="tab-icon" src="stickers/avatar/avatar-materials.png" alt="">
+    材料库 <span class="badge" id="cntMaterial">0</span>
+  </button>
+  <button class="tab" data-tab="learn">
+    <img class="tab-icon" src="stickers/avatar/avatar-learn.png" alt="">
+    学习站 <span class="badge" id="cntLearn">0</span>
+  </button>
+</nav>
+
+<main>
+
+  <!-- ============ 爆款库 ============ -->
+  <section class="panel active" id="tab-library">
+    <div class="filters">
+      <input type="search" id="q" placeholder="搜索款式 / 标签 / 元素…">
+      <select id="fPlatform">
+        <option value="">全部平台</option>
+        <option value="xhs">小红书热</option>
+        <option value="dy">抖音热</option>
+      </select>
+      <select id="fDiff">
+        <option value="">全部难度</option>
+        <option value="1-2">新手友好 (1-2星)</option>
+        <option value="3">进阶 (3星)</option>
+        <option value="4-5">高手 (4-5星)</option>
+      </select>
+      <select id="fSeason">
+        <option value="">全部季节</option>
+        <option value="春">春</option><option value="夏">夏</option>
+        <option value="秋">秋</option><option value="冬">冬</option>
+        <option value="全年">全年款</option>
+      </select>
+      <select id="fSort">
+        <option value="trend">按爆款指数</option>
+        <option value="cost">按单次成本 ↑</option>
+        <option value="diff">按难度 ↑</option>
+        <option value="time">按耗时 ↑</option>
+        <option value="margin">按毛利 ↓</option>
+      </select>
+      <button class="ghost-btn" id="btnReset">重置</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="emptyLib" hidden>没有匹配的款式，换个筛选条件试试～ 🌸</p>
+  </section>
+
+  <!-- ============ 美甲作品集（上传自己的作品） ============ -->
+  <section class="panel" id="tab-portfolio">
+    <div class="notice">
+      <strong>📸 我的美甲作品集：</strong>把你自己做的美甲作品传上来，按<strong>线下客户美甲</strong>和<strong>穿戴甲</strong>分类收集，方便日后翻看、给客户参考、做搭配灵感库。图片保存在本地服务器，刷新 / 重启都不会丢。✿
+    </div>
+
+    <div class="pf-upload">
+      <div class="pf-cat-switch" id="pfCat">
+        <button type="button" class="active" data-cat="client">💅 线下客户美甲</button>
+        <button type="button" data-cat="wear">📦 穿戴甲</button>
+      </div>
+      <div class="pf-form">
+        <label class="pf-file" id="pfDrop">
+          <input type="file" id="pfInput" accept="image/*" multiple>
+          <div class="pf-file-inner">
+            <div class="pf-file-ico">＋</div>
+            <div>点击或拖拽上传图片<br><span class="tip">支持多选：一次传一副甲的多个角度</span></div>
+          </div>
+        </label>
+        <div class="pf-fields">
+          <input type="text" id="pfName" placeholder="作品名称（选填，如：小A的法式猫眼）">
+          <textarea id="pfNote" rows="2" placeholder="备注（选填，如：用的是磨砂封层 / 客户指定配色）"></textarea>
+          <button class="primary-btn" id="btnPfUpload">保存到作品集</button>
+          <span class="tip" id="pfStatus"></span>
+        </div>
+      </div>
+      <div class="pf-preview" id="pfPreview"></div>
+    </div>
+
+    <div class="pf-filter">
+      <button class="pf-tab active" data-pf="all">全部 <span id="cntAll">0</span></button>
+      <button class="pf-tab" data-pf="client">线下客户美甲 <span id="cntClient">0</span></button>
+      <button class="pf-tab" data-pf="wear">穿戴甲 <span id="cntWear">0</span></button>
+    </div>
+
+    <div class="pf-grid" id="pfGrid"></div>
+    <p class="empty" id="emptyPf" hidden>还没有作品，上传第一张吧～ 🌸</p>
+  </section>
+
+  <!-- ============ 采购比价 ============ -->
+  <section class="panel" id="tab-cart">
+    <div class="cart-head">
+      <div>
+        <h2 class="sec-title tight">
+          <img class="sec-icon" src="stickers/cute-flower.png" alt="">
+          采购清单
+        </h2>
+        <p class="tip">在爆款库里点「加入采购」，多个款式的材料会自动合并去重～</p>
+      </div>
+      <div class="cart-actions">
+        <label class="chk"><input type="checkbox" id="incGear"> 含设备（光疗灯/打磨机等）</label>
+        <button class="ghost-btn" id="btnClearCart">清空</button>
+      </div>
+    </div>
+
+    <!-- 视觉分析：上传照片 → 自动识别所需材料 -->
+    <div class="vision-upload">
+      <h3 class="sec-title tight"><img class="sec-icon" src="stickers/cute-camera-pink.png" alt=""> 拍照 / 传图 → 自动分析要买啥</h3>
+      <p class="tip">上传一张美甲款式照片，AI 帮你识别材料 / 工具 / 饰品，勾选后一键加入采购车（自动匹配物料库价格）。收藏夹里的款式也能直接分析。</p>
+      <div class="vision-drop" id="visionDrop">
+        <img id="visionPreview" class="vision-prev" hidden alt="预览">
+        <div class="vision-drop-hint" id="visionDropHint">点击选择 或 拖拽图片到这里</div>
+        <input type="file" id="visionFile" accept="image/*" hidden>
+      </div>
+      <div class="vision-upload-actions">
+        <button class="ghost-btn" id="visionPick">选择图片</button>
+        <button class="primary-btn" id="btnVisionAnalyze" disabled>🔍 分析照片并加购</button>
+      </div>
+    </div>
+
+    <div id="cartStyles" class="chip-row"></div>
+
+    <div class="cart-summary" id="cartSummary"></div>
+
+    <div class="table-wrap">
+      <table class="mat-table" id="cartTable">
+        <thead>
+          <tr>
+            <th>材料</th><th>规格</th><th>类别</th>
+            <th class="num">零售参考</th><th class="num">1688参考</th>
+            <th class="num">可用次数</th><th class="num">单次成本</th>
+            <th>比价直达</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="empty" id="emptyCart">采购车是空的。去「爆款库」挑几个款式加进来～ 🛒</p>
+
+    <div class="vision-custom" id="visionCustom"></div>
+
+    <h2 class="sec-title">
+      <img class="sec-icon" src="stickers/cute-mushroom.png" alt="">
+      起步装备（一次性投入）
+    </h2>
+    <div class="table-wrap">
+      <table class="mat-table" id="gearTable">
+        <thead><tr><th>设备</th><th>说明</th><th class="num">零售参考</th><th class="num">1688参考</th><th>比价直达</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 成本定价 ============ -->
+  <section class="panel" id="tab-pricing">
+    <h2 class="sec-title">
+      <img class="sec-icon" src="stickers/cute-clover.png" alt="">
+      成本 / 定价 / 毛利 全景表
+    </h2>
+    <p class="tip">单次成本 = 各材料（零售价 ÷ 可用次数 × 用量）之和，不含设备摊销与人工。建议价来自当前市场区间。</p>
+    <div class="calc-bar">
+      <label>人工工时费 ¥<input type="number" id="laborRate" value="60" min="0" step="10">/小时</label>
+      <label>店铺分摊 ¥<input type="number" id="overhead" value="15" min="0" step="5">/单</label>
+      <label>目标毛利率 <input type="number" id="targetMargin" value="65" min="0" max="95" step="5">%</label>
+    </div>
+    <div class="table-wrap">
+      <table class="mat-table" id="priceTable">
+        <thead>
+          <tr>
+            <th>款式</th><th class="num">难度</th><th class="num">耗时</th>
+            <th class="num">材料成本</th><th class="num">人工</th><th class="num">总成本</th>
+            <th class="num">市场价区间</th><th class="num">建议定价</th><th class="num">毛利率</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="pricing-note" id="pricingNote"></div>
+  </section>
+
+  <!-- ============ 爆款中心（每日爆款 + 爆款总结 两栏） ============ -->
+  <section class="panel" id="tab-baokuan">
+    <div class="bk-cols">
+      <!-- 左栏：每日爆款 -->
+      <section class="bk-col">
+        <h2 class="sec-title">
+          <img class="sec-icon" src="stickers/cute-cat-wink.png" alt="">
+          每日爆款 <span class="tip">小红书真实图</span>
+        </h2>
+        <div class="notice" id="dailyNotice">
+          <strong>真实小红书爆款图：</strong>这里展示的是<strong>小红书里的真实笔记图片</strong>（不是 AI 生成）。点任意一张图可看<strong>原帖图文 + 拆解 + 上手教程</strong>。抓取靠你的账号 cookie，在 <code>.xhs_cookie.txt</code> 填入即可。
+          <span class="tip">cookie 会过期，刷不出图时重新导一次即可。</span>
+        </div>
+        <div class="daily-bar">
+          <input type="text" id="dailyKw" placeholder="关键词，例如：猫眼美甲 短甲 显白">
+          <button class="primary-btn" id="btnDailySearch">抓取今日爆款</button>
+          <span class="daily-updated" id="dailyUpdated"></span>
+        </div>
+        <div id="dailySearchResult" class="xhs-grid"></div>
+        <p class="empty" id="emptyDaily" hidden>还没有抓取结果。输入关键词点「抓取今日爆款」，或往下粘贴笔记链接导入～ 📸</p>
+        <h2 class="sec-title">
+          <img class="sec-icon" src="stickers/cute-envelope-heart.png" alt="">
+          粘贴笔记链接导入（看全部细节图）
+        </h2>
+        <div class="notice soft">
+          把小红书笔记链接一行一个粘贴进来（也支持一次多行），会自动抓该笔记的<strong>全部图片 + 文案 + 点赞</strong>，方便你逐张拆解。
+        </div>
+        <div class="intake">
+          <textarea id="dailyLinks" rows="3" placeholder="https://www.xiaohongshu.com/explore/xxxxxxxxxx&#10;https://www.xiaohongshu.com/explore/yyyyyyyyyy"></textarea>
+          <div class="row btns">
+            <button class="primary-btn" id="btnDailyImport">导入这些笔记</button>
+            <button class="ghost-btn" id="btnDailyClear">清空我的爆款库</button>
+          </div>
+        </div>
+        <div id="dailyNotes" class="xhs-notes"></div>
+      </section>
+
+      <!-- 右栏：爆款总结 -->
+      <section class="bk-col">
+        <h2 class="sec-title">
+          <img class="sec-icon" src="stickers/cute-cloud.png" alt="">
+          爆款总结 <span class="tip">每月 / 每季度</span>
+        </h2>
+        <div class="notice" id="summaryNotice">
+          <strong>每月 / 每季度爆款美甲 · 小红书真实数据</strong>：点下面任意<strong>月份</strong>或<strong>季度</strong>卡片，工作台会自动去小红书抓该主题的真实爆款图文（按点赞排序，图都来自小红书真实帖子，不会雷同）。点任意一张图可看<strong>原帖图文 + 拆解 + 上手教程</strong>。进入本页会默认抓<strong>当前月</strong>的真实爆款。
+        </div>
+        <h2 class="sec-title">按月份看小红书真实爆款</h2>
+        <div class="month-grid" id="monthGrid"></div>
+        <h2 class="sec-title">按季度看小红书真实爆款</h2>
+        <div class="quarter-grid" id="quarterGrid"></div>
+        <div class="real-detail" id="realDetail" hidden>
+          <div class="real-detail-head">
+            <h3 id="realDetailTitle">真实爆款</h3>
+            <button class="ghost-btn" id="btnReGrab">↻ 重新抓取</button>
+          </div>
+          <div class="xhs-grid" id="realDetailGrid"></div>
+        </div>
+        <p class="summary-foot">💡 真实数据来自小红书实时抓取；每天 9:00 自动任务会预抓当月 / 当季真实爆款，打开即看。点图看原帖图文 + 拆解 + 教程。</p>
+      </section>
+    </div>
+  </section>
+
+  <!-- ============ 美甲盲盒 + 场合匹配 ============ -->
+  <section class="panel" id="tab-blindbox">
+    <div class="bb-head">
+      <h2 class="sec-title">
+        <img class="sec-icon" src="stickers/cute-clover.png" alt="">
+        美甲盲盒 · 今日灵感
+      </h2>
+      <p class="tip">每天自动从「小红书真实爆款」里为你抽 10 款<strong>不同风格、长短甲都有</strong>的美甲；点卡片即可像「每日爆款」一样弹出图文拆解。看到喜欢的就点 🤍 收进右侧收藏夹。</p>
+      <div class="bb-bar">
+        <div class="bb-date">📅 <span id="blindDate"></span> · 今日 <b id="blindCount">0</b> 款 · 覆盖 <span id="blindLenHint"></span></div>
+        <button class="ghost-btn" id="btnBlindAgain">🎲 换一组今日盲盒</button>
+      </div>
+    </div>
+
+    <div class="grid" id="blindGrid"></div>
+
+    <div class="bb-cols">
+      <div class="occasion-box">
+        <h3 class="occ-title">🎯 按场合帮我选</h3>
+        <p class="tip">告诉我要去哪 / 做什么，立刻弹出匹配的美甲（已自动去重，避免一堆相似款）。例如：<em>参加婚礼</em>、<em>上班通勤</em>、<em>周末派对</em>、<em>约会</em>、<em>节日</em>、<em>度假拍照</em>、<em>新手第一次做</em>。</p>
+        <div class="occ-row">
+          <input type="text" id="occInput" placeholder="我要去做什么？如：参加闺蜜的婚礼">
+          <button class="primary-btn" id="btnMatch">🔍 匹配美甲</button>
+        </div>
+        <div class="occ-chips" id="occChips">
+          <button class="occ-chip" data-occ="参加婚礼">💍 婚礼</button>
+          <button class="occ-chip" data-occ="上班通勤">💼 通勤</button>
+          <button class="occ-chip" data-occ="周末派对">🎉 派对</button>
+          <button class="occ-chip" data-occ="约会">💕 约会</button>
+          <button class="occ-chip" data-occ="节日">🎄 节日</button>
+          <button class="occ-chip" data-occ="度假拍照">📸 度假拍照</button>
+          <button class="occ-chip" data-occ="新手第一次做">🌱 新手</button>
+        </div>
+      </div>
+
+      <aside class="fav-box">
+        <h3 class="occ-title">❤️ 我的收藏夹 <span class="fav-count" id="favCount">0</span></h3>
+        <p class="tip">在盲盒或场合匹配里点 🤍 就能收进来，随时回看。</p>
+        <div class="grid fav-grid" id="favGrid"></div>
+        <button class="ghost-btn" id="btnClearFav">清空收藏</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 材料库（拍照上传 + AI 分类 + 搜索 + 找同款） ============ -->
+  <section class="panel" id="tab-material">
+    <div class="notice">
+      <strong>🗃️ 我的材料库：</strong>把买来的美甲材料拍张照传上来，<strong>AI 自动识别并分类</strong>（基础耗材 / 色料 / 特效材料 / 饰品配件 / 甲片穿戴 / 手工具 / 设备）。上传前会自动比对库里有没有，没有就<strong>直接帮你找好购物同款</strong>。平时搜一下名字就知道还缺不缺货。✿
+    </div>
+
+    <!-- 上传 + AI 识别 -->
+    <div class="mat-upload">
+      <div class="mat-upload-head">
+        <h3 class="occ-title">📷 拍照 / 传图 → AI 自动分类入库</h3>
+        <button class="ghost-btn small" id="btnMatToggleUpload">＋ 添加材料</button>
+      </div>
+      <div class="mat-upload-body" id="matUploadBody" hidden>
+        <div class="pf-file mat-file" id="matDrop">
+          <input type="file" id="matInput" accept="image/*" multiple>
+          <div class="pf-file-inner">
+            <div class="pf-file-ico">＋</div>
+            <div>点击或拖拽上传材料照片<br><span class="tip">可一次拍多张 / 多选，AI 会逐件识别</span></div>
+          </div>
+        </div>
+        <div class="mat-preview" id="matPreview"></div>
+        <div class="mat-upload-actions">
+          <button class="ghost-btn" id="btnMatPick">选择图片</button>
+          <button class="primary-btn" id="btnMatAnalyze" disabled>🔍 AI 识别材料</button>
+        </div>
+        <div class="mat-recognize" id="matRecognize"></div>
+        <div class="mat-save-form" id="matSaveForm" hidden></div>
+      </div>
+    </div>
+
+    <!-- 搜索 + 筛选 + 统计 -->
+    <div class="filters mat-filters">
+      <input type="search" id="matSearch" placeholder="搜材料名 / 品牌 / 规格…（搜不到就帮你找同款）">
+      <select id="matFilterCat">
+        <option value="">全部分类</option>
+        <option value="基础耗材">基础耗材</option>
+        <option value="色料">色料</option>
+        <option value="特效材料">特效材料</option>
+        <option value="饰品配件">饰品配件</option>
+        <option value="甲片穿戴">甲片穿戴</option>
+        <option value="手工具">手工具</option>
+        <option value="设备">设备</option>
+      </select>
+      <button class="ghost-btn" id="btnMatReset">重置</button>
+    </div>
+    <div class="mat-stats" id="matStats"></div>
+
+    <div class="mat-grid" id="matGrid"></div>
+    <p class="empty" id="emptyMat" hidden>材料库还是空的，上传第一件材料吧～ 🌸</p>
+  </section>
+
+  <!-- ============ 学习站（笔记 + 链接 个人知识库） ============ -->
+  <section class="panel" id="tab-learn">
+    <div class="notice">
+      <strong>📚 我的学习站：</strong>把对你有用的<strong>学习链接</strong>和<strong>笔记</strong>都收在这里，按分类整理，随时回看。链接点一下就新开页面打开，笔记可以写要点 / 灵感 / 操作步骤。数据存在本地服务器，刷新 / 重启都不会丢。✿
+    </div>
+
+    <!-- 添加 / 编辑 表单 -->
+    <div class="learn-form">
+      <div class="learn-form-row">
+        <input type="text" id="learnTitle" placeholder="标题（如：千聊 · 猫眼美甲进阶课）" maxlength="80">
+        <input type="text" id="learnCat" list="learnCats" placeholder="分类（如：教程 / 优惠 / 工具）" maxlength="20">
+        <datalist id="learnCats">
+          <option value="教程"></option>
+          <option value="优惠/活动"></option>
+          <option value="工具"></option>
+          <option value="灵感"></option>
+          <option value="素材"></option>
+          <option value="直播/课程"></option>
+          <option value="其它"></option>
+        </datalist>
+      </div>
+      <div class="learn-form-row">
+        <input type="url" id="learnUrl" placeholder="链接（选填，如 https://... 留空则只存笔记）">
+      </div>
+      <div class="learn-form-row">
+        <textarea id="learnNote" rows="2" placeholder="笔记（选填，如：第 3 节讲了晕染手法，记得练渐变过渡）"></textarea>
+      </div>
+      <div class="learn-form-actions">
+        <button class="primary-btn" id="btnLearnSave">保存</button>
+        <button class="ghost-btn" id="btnLearnCancel" hidden>取消编辑</button>
+        <span class="tip" id="learnStatus"></span>
+      </div>
+    </div>
+
+    <!-- 筛选 -->
+    <div class="filters learn-filters">
+      <input type="search" id="learnSearch" placeholder="搜索标题 / 笔记 / 链接…">
+      <select id="learnFilterCat">
+        <option value="">全部分类</option>
+      </select>
+      <button class="ghost-btn" id="btnLearnReset">重置</button>
+    </div>
+
+    <div class="learn-grid" id="learnGrid"></div>
+    <p class="empty" id="emptyLearn" hidden>学习站还是空的，在上方添加第一条吧～ 🌸</p>
+  </section>
+
+</main>
+</div>
+
+<!-- ============ 详情抽屉 ============ -->
+<div class="drawer-mask" id="mask"></div>
+<aside class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose">✕</button>
+  <div id="drawerBody"></div>
+</aside>
+
+<!-- ============ 小红书笔记 · 图文拆解弹窗 ============ -->
+<div class="note-modal-mask" id="noteMask"></div>
+<div class="note-modal" id="noteModal" role="dialog" aria-modal="true" aria-label="小红书爆款拆解">
+  <button class="note-modal-close" id="noteModalClose" aria-label="关闭">✕</button>
+  <div id="noteModalBody"></div>
+</div>
+
+<!-- ============ 作品集 · 看图灯箱 ============ -->
+<div class="lb-mask" id="lbMask"></div>
+<div class="lb-box" id="lbBox" role="dialog" aria-modal="true" aria-label="查看作品">
+  <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">›</button>
+  <div class="lb-cap" id="lbCap"></div>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<!-- ============ 场合匹配 · 弹窗 ============ -->
+<div class="match-mask" id="matchMask">
+  <div class="match-modal" role="dialog" aria-modal="true" aria-label="场合匹配美甲">
+    <button class="match-close" id="matchClose" aria-label="关闭">✕</button>
+    <div id="matchBody"></div>
+  </div>
+</div>
+
+<!-- ============ 视觉分析 · 识别材料弹窗 ============ -->
+<div class="vision-mask" id="visionMask">
+  <div class="vision-modal" role="dialog" aria-modal="true" aria-label="照片材料分析">
+    <button class="vision-close" id="visionX" aria-label="关闭">✕</button>
+    <div id="visionBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="seasonal.js"></script>
+<script src="app.js"></script>
+
+<!-- ============ 设置弹窗（视觉识别 Key 等） ============ -->
+<div class="modal-mask" id="settingsMask">
+  <div class="modal" id="settingsBody">
+    <button class="note-modal-close" id="btnSetClose" aria-label="关闭">✕</button>
+    <h3 class="occ-title">⚙️ 设置</h3>
+    <div class="set-row">
+      <label>视觉识别 Key（DashScope）</label>
+      <input id="setKey" type="password" placeholder="sk-..." autocomplete="off">
+      <p class="tip">用于材料识别 / 教程生成 / 采购比价。从阿里云 DashScope 控制台获取 sk- 开头密钥，填一次本机浏览器记住，仅本机使用、不会上传到任何服务器。留空则这些 AI 功能不可用（其余功能正常）。</p>
+    </div>
+    <div class="modal-actions">
+      <button class="ghost-btn" id="btnSetCancel">取消</button>
+      <button class="primary-btn" id="btnSetSave">保存</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

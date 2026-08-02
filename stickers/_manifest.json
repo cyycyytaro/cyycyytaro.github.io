@@ -1,0 +1,278 @@
+{
+  "trees": [
+    {
+      "name": "tree-green-dotted",
+      "size": [
+        312,
+        220
+      ],
+      "kb": 42.7
+    },
+    {
+      "name": "tree-pink-christmas",
+      "size": [
+        340,
+        220
+      ],
+      "kb": 55.3
+    },
+    {
+      "name": "tree-blue-cloud",
+      "size": [
+        360,
+        220
+      ],
+      "kb": 48.6
+    },
+    {
+      "name": "tree-purple-round",
+      "size": [
+        320,
+        220
+      ],
+      "kb": 50.1
+    },
+    {
+      "name": "tree-blue-starry",
+      "size": [
+        340,
+        220
+      ],
+      "kb": 41.6
+    },
+    {
+      "name": "tree-yellow-star",
+      "size": [
+        360,
+        220
+      ],
+      "kb": 39.4
+    },
+    {
+      "name": "tree-blue-leafy",
+      "size": [
+        335,
+        220
+      ],
+      "kb": 52.5
+    },
+    {
+      "name": "tree-yellow-triangle",
+      "size": [
+        340,
+        220
+      ],
+      "kb": 48.3
+    },
+    {
+      "name": "tree-blue-pines",
+      "size": [
+        360,
+        220
+      ],
+      "kb": 61.1
+    }
+  ],
+  "cutes": [
+    {
+      "name": "cute-cat-face",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 14.2
+    },
+    {
+      "name": "cute-orange-bun",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 23.9
+    },
+    {
+      "name": "cute-mushroom",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 13.9
+    },
+    {
+      "name": "cute-cat-frame",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 27.2
+    },
+    {
+      "name": "cute-camera-phone",
+      "size": [
+        240,
+        120
+      ],
+      "kb": 29.6
+    },
+    {
+      "name": "cute-cat-wink",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 16.6
+    },
+    {
+      "name": "cute-pink-heart",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 18.6
+    },
+    {
+      "name": "cute-rose",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 15.9
+    },
+    {
+      "name": "cute-pig-nose",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 22.2
+    },
+    {
+      "name": "cute-envelope-heart",
+      "size": [
+        240,
+        120
+      ],
+      "kb": 33.0
+    },
+    {
+      "name": "cute-cat-simple",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 19.2
+    },
+    {
+      "name": "cute-flower",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 19.0
+    },
+    {
+      "name": "cute-speech-bubble",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 33.6
+    },
+    {
+      "name": "cute-camera-pink",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 32.4
+    },
+    {
+      "name": "cute-bow",
+      "size": [
+        240,
+        120
+      ],
+      "kb": 25.5
+    },
+    {
+      "name": "cute-cat-sleep",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 13.8
+    },
+    {
+      "name": "cute-notebook",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 17.9
+    },
+    {
+      "name": "cute-cake",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 13.8
+    },
+    {
+      "name": "cute-star",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 29.4
+    },
+    {
+      "name": "cute-bandaid",
+      "size": [
+        240,
+        120
+      ],
+      "kb": 21.9
+    },
+    {
+      "name": "cute-cat-xeye",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 17.4
+    },
+    {
+      "name": "cute-strawberry",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 17.1
+    },
+    {
+      "name": "cute-cloud",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 15.6
+    },
+    {
+      "name": "cute-heart-circle",
+      "size": [
+        215,
+        120
+      ],
+      "kb": 22.8
+    },
+    {
+      "name": "cute-clover",
+      "size": [
+        240,
+        120
+      ],
+      "kb": 28.0
+    }
+  ]
+}

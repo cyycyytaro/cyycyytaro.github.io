@@ -1,0 +1,17 @@
+{
+  "name": "美甲爆款工作台",
+  "short_name": "美甲工作台",
+  "description": "找爆款 → 拆教程 → 算材料 → 比价采购",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF9F5",
+  "theme_color": "#E87AA0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
