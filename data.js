@@ -68,7 +68,7 @@ const COMMON_BOM = [
 const STYLES = [
   {
     id: 'galaxy-cateye',
-    img: 'img/galaxy-cateye.png',
+    img: 'img/galaxy-cateye.jpg',
     name: '深海银河猫眼',
     alias: '9D猫眼 / 银河猫眼',
     platform: ['xhs', 'dy'],
@@ -111,7 +111,7 @@ const STYLES = [
 
   {
     id: 'chrome-french',
-    img: 'img/chrome-french.png',
+    img: 'img/chrome-french.jpg',
     name: '镜面铬粉法式',
     alias: '液态金属法式 / Chrome French',
     platform: ['xhs', 'dy'],
@@ -147,7 +147,7 @@ const STYLES = [
 
   {
     id: 'bow-cream',
-    img: 'img/bow-cream.png',
+    img: 'img/bow-cream.jpg',
     name: '蝴蝶结奶油法式',
     alias: '芭蕾蝴蝶结 / Coquette 甜心',
     platform: ['xhs', 'dy'],
@@ -184,7 +184,7 @@ const STYLES = [
 
   {
     id: 'maillard-blur',
-    img: 'img/maillard-blur.png',
+    img: 'img/maillard-blur.jpg',
     name: '美拉德晕染',
     alias: '焦糖晕染 / Maillard',
     platform: ['xhs'],
@@ -221,7 +221,7 @@ const STYLES = [
 
   {
     id: 'jelly-ice',
-    img: 'img/jelly-ice.png',
+    img: 'img/jelly-ice.jpg',
     name: '冰透果冻甲',
     alias: '玻璃糖 / Jelly Nails',
     platform: ['xhs', 'dy'],
@@ -256,7 +256,7 @@ const STYLES = [
 
   {
     id: 'pearl-moon',
-    img: 'img/pearl-moon.png',
+    img: 'img/pearl-moon.jpg',
     name: '珍珠月光贝母',
     alias: 'Mermaid / 贝母甲',
     platform: ['xhs'],
@@ -292,7 +292,7 @@ const STYLES = [
 
   {
     id: 'micro-french',
-    img: 'img/micro-french.png',
+    img: 'img/micro-french.jpg',
     name: '断层微法式',
     alias: 'Micro French / 隐形法式',
     platform: ['xhs', 'dy'],
@@ -326,7 +326,7 @@ const STYLES = [
 
   {
     id: 'bubble-glass',
-    img: 'img/bubble-glass.png',
+    img: 'img/bubble-glass.jpg',
     name: '气泡玻璃甲',
     alias: '极光玻璃纸 / Glass Nails',
     platform: ['dy', 'xhs'],
@@ -361,7 +361,7 @@ const STYLES = [
 
   {
     id: 'blush-glitter',
-    img: 'img/blush-glitter.png',
+    img: 'img/blush-glitter.jpg',
     name: '芭蕾粉爆闪钻',
     alias: '碎钻裸粉 / Sparkle Ballet',
     platform: ['xhs', 'dy'],
@@ -395,7 +395,7 @@ const STYLES = [
 
   {
     id: 'jp-line',
-    img: 'img/jp-line.png',
+    img: 'img/jp-line.jpg',
     name: '日式手绘线条',
     alias: '极简线条 / Japanese Line Art',
     platform: ['xhs'],
@@ -430,7 +430,7 @@ const STYLES = [
 
   {
     id: 'sand-cateye',
-    img: 'img/sand-cateye.png',
+    img: 'img/sand-cateye.jpg',
     name: '流沙猫眼渐变',
     alias: '沙滩猫眼 / Sand Cat Eye',
     platform: ['dy', 'xhs'],
@@ -465,7 +465,7 @@ const STYLES = [
 
   {
     id: 'matte-nude',
-    img: 'img/matte-nude.png',
+    img: 'img/matte-nude.jpg',
     name: '磨砂裸色通勤',
     alias: '素颜甲 / Clean Girl',
     platform: ['xhs'],
@@ -498,7 +498,7 @@ const STYLES = [
 
   {
     id: 'velvet-snow',
-    img: 'img/velvet-snow.png',
+    img: 'img/velvet-snow.jpg',
     name: '雪花绒毛甲',
     alias: '天鹅绒 / Velvet Nails',
     platform: ['dy'],
@@ -533,7 +533,7 @@ const STYLES = [
 
   {
     id: 'wear-butterfly',
-    img: 'img/wear-butterfly.png',
+    img: 'img/wear-butterfly.jpg',
     name: '蝶翼镭射穿戴甲',
     alias: '成品穿戴甲 / Press-on',
     platform: ['dy', 'xhs'],
@@ -570,7 +570,7 @@ const STYLES = [
 
   {
     id: 'classic-french',
-    img: 'img/classic-french.png',
+    img: 'img/classic-french.jpg',
     name: '经典白法式',
     alias: 'French Tip / 微笑线',
     platform: ['xhs', 'dy'],
@@ -597,7 +597,7 @@ const STYLES = [
 
   {
     id: 'blush-jelly',
-    img: 'img/blush-jelly.png',
+    img: 'img/blush-jelly.jpg',
     name: '腮红果冻甲',
     alias: '苹果腮红 / Blush Nails',
     platform: ['xhs', 'dy'],
@@ -624,7 +624,7 @@ const STYLES = [
 
   {
     id: 'color-block',
-    img: 'img/color-block.png',
+    img: 'img/color-block.jpg',
     name: '跳色纯色款',
     alias: 'Skip Color / 撞色',
     platform: ['xhs', 'dy'],
@@ -650,7 +650,7 @@ const STYLES = [
 
   {
     id: 'milk-tea-grad',
-    img: 'img/milk-tea-grad.png',
+    img: 'img/milk-tea-grad.jpg',
     name: '奶茶渐变甲',
     alias: 'Ombre / 奶茶晕染',
     platform: ['xhs', 'dy'],

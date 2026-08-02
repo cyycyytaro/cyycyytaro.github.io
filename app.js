@@ -2540,3 +2540,24 @@ load();
 bind();
 initUI();
 
+// 全局懒加载兜底：给所有未设置 loading 的图片加 lazy（含动态渲染）
+(function () {
+  function lazyAll(root) {
+    root.querySelectorAll('img:not([loading])').forEach(function (im) { im.loading = 'lazy'; });
+  }
+  lazyAll(document);
+  if (window.MutationObserver) {
+    var obs = new MutationObserver(function (muts) {
+      muts.forEach(function (m) {
+        m.addedNodes.forEach(function (n) {
+          if (n.nodeType === 1) {
+            if (n.tagName === 'IMG' && !n.hasAttribute('loading')) n.loading = 'lazy';
+            else if (n.querySelectorAll) lazyAll(n);
+          }
+        });
+      });
+    });
+    obs.observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+
